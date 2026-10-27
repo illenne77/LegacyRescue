@@ -1,0 +1,6 @@
+# Legacy INI files are ANSI (CP949) as on a Korean Windows PC; GetPrivateProfileString reads them that way.
+# Stored as UTF-8 in git, converted to CP949 in the working tree.
+legacy/**/*.ini text working-tree-encoding=CP949 eol=crlf
+
+# Golden files are byte-exact legacy output (CP949, CRLF). Never normalize them.
+data/golden/** -text -diff
