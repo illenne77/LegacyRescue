@@ -126,4 +126,8 @@ dotnet build modern/LegacyRescue.Modern.sln
 dotnet test modern/tests/LegacyRescue.Characterization
 dotnet test modern/tests/LegacyRescue.Tests
 dotnet run --project modern/src/LegacyRescue.App
+dotnet build legacy/LegacyRescue.Legacy.sln
+dotnet run --project modern/tools/LegacyRescue.DbTool -- create-db data/prodmgr.db --force
+dotnet run --project modern/tools/LegacyRescue.DbTool -- gen-seed   # seed.sql 재생성 (결정적)
+scripts/setup-cloud-dotnet.sh                                       # 클라우드 세션 SDK 설치
 ```

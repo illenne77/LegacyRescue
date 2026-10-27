@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Infrastructure is referenced only by the composition root (DI registration); views and view models use Application. -->
+    <ProjectReference Include="..\LegacyRescue.Application\LegacyRescue.Application.csproj" />
+    <ProjectReference Include="..\LegacyRescue.Infrastructure\LegacyRescue.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

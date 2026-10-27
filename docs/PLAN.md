@@ -12,10 +12,21 @@
 ## 0단계 — 환경 준비 (0.5일)
 
 - [x] `.gitignore`, `README.md` 초안 (초기 커밋에 포함)
-- [ ] [클라우드] `legacy/`, `modern/` 솔루션 골격 생성 (`CLAUDE.md` 구조와 대상 프레임워크대로)
-- [ ] [클라우드] `Directory.Build.props` (nullable, 경고 수준 — 단, legacy 폴더는 레거시 스타일 유지를 위해 별도 설정)
-- [ ] [클라우드] `data/schema.sql`, `data/seed.sql` — 3개 라인, 2개 교대, 약 30일치 작업지시·실적 (가상 품목명)
-- [ ] [클라우드] 시드 스크립트로 SQLite DB를 만드는 도구 또는 스크립트
+- [x] [클라우드] `legacy/`, `modern/` 솔루션 골격 생성 (`CLAUDE.md` 구조와 대상 프레임워크대로)
+    - `legacy/LegacyRescue.Legacy.sln`: WinForms(net48, SDK 스타일 csproj + ReferenceAssemblies로 Linux 컴파일)
+    - `modern/LegacyRescue.Modern.sln`: Domain / Application / Infrastructure / App(WPF) / Tests / Characterization / tools/DbTool
+    - Native(7단계)와 Legacy.Calc(7단계)는 해당 단계에서 추가
+- [x] [클라우드] `Directory.Build.props` (nullable, 경고 수준 — 단, legacy 폴더는 레거시 스타일 유지를 위해 별도 설정)
+    - `modern/`: Nullable, TreatWarningsAsErrors, AnalysisLevel latest-recommended, 중앙 패키지 관리(`Directory.Packages.props`)
+    - `legacy/`: C# 7.3, Nullable 끔, 경고 허용 (modern 설정을 상속하지 않음)
+    - 루트 `global.json`: SDK 8.0.x
+- [x] [클라우드] `data/schema.sql`, `data/seed.sql` — 3개 라인, 2개 교대, 약 30일치 작업지시·실적 (가상 품목명)
+    - 2026-09-01 ~ 09-30(일요일 휴무) + 08-31 야간 1건, 작업지시 190건, 실적 217건
+    - 경계 사례: 반올림 중간값, 계획 수량 0, 수량 0 실적, 실적 미입력, 자정·주말·월말을 넘는 야간 실적
+- [x] [클라우드] 시드 스크립트로 SQLite DB를 만드는 도구 또는 스크립트
+    - `modern/tools/LegacyRescue.DbTool`: `gen-seed`(고정 난수 시드로 seed.sql 결정적 생성), `create-db <db> [--force]`
+- [x] [클라우드] `scripts/setup-cloud-dotnet.sh` — 클라우드 세션용 .NET 8 SDK 설치 (Ubuntu 패키지 SDK에는 WPF용 WindowsDesktop SDK가 없음)
+- [ ] [로컬] Windows에서 두 솔루션 빌드, WinForms 빈 창 실행 확인
 
 **완료 기준**: 두 솔루션 빌드 성공, 시드 DB 생성 확인
 
